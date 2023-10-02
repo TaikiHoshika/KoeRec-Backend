@@ -12,7 +12,7 @@ class User(SQLModel, table=True):
     email: str = Field(index=True)
     password: str
     created_at: datetime = Field(default=datetime.utcnow(), nullable=False)
-    updated_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    updated_at: datetime = Field(default_factory=datetime.utcnow(), nullable=False)
 
     plan_id: Optional[int] = Field(default=None, foreign_key="plan.id")
     plan: Optional["Plan"] = Relationship(back_populates="users")

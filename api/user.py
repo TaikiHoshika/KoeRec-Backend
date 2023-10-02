@@ -7,7 +7,7 @@ from model import User, Plan
 router = APIRouter()
 
 @router.post("/user/create/")
-def create_user(user: User):
+async def create_user(user: User):
     with Session(engine) as session:
         session.add(user)
         session.commit()
@@ -15,13 +15,13 @@ def create_user(user: User):
         return user
 
 @router.get("/user/get/")
-def get_user():
+async def get_user():
     with Session(engine) as session:
         users = session.exec(select(User)).all()
         return users
 
 @router.get("/user/get/{id}/")
-def get_a_user(id):
+async def get_a_user(id):
     with Session(engine) as session:
         statement = select(User).where(User.id == id)
         user = session.exec(statement).one()
