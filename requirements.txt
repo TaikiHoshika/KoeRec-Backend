@@ -1,3 +1,4 @@
 sqlmodel
 fastapi
 uvicorn[standard]
+bcrypt
